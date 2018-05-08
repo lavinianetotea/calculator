@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>{{ page.title }}</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/css/main.css">
+		<link rel="stylesheet" href="css/calculator.css">
+
+		<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="/js/ng-context-menu.min.js"></script>
+		<script src="/js/main.js"></script>
+		<script src="/js/topMenu.js"></script>
+		<script src="/js/modalDialog.js"></script>
+		<script src="/js/loginForm.js"></script>
+	</head>
+	<body ng-app="main">
+		{% if page.topMenu %}
+			<top-menu></top-menu>
+		{% endif %}
+		{% if page.angular %}
+			<{{ page.template }}>
+		{% else %}
+			{% include page.template %}
+		{% endif %}
+
+		<script src="/js/calculator-logic.js"></script>
+	</body>
+</html>

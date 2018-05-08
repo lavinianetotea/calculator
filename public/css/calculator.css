@@ -1,15 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-body {
-    height: 100vh;
-    margin: 0;
-    text-align: center;
-    font-size: 24pt;
-}
-
 .calculator {
     height: 100%;
-    margin: 0 auto;
+    margin: 50px auto;
     max-width: 375px;
     max-height: 450px;
     border-style: solid;
@@ -25,7 +16,7 @@ body {
     text-align: right;
 }
 
-.button {
+.c-button {
     box-sizing: border-box;
     cursor: pointer;
     float: left;

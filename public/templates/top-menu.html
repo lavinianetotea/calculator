@@ -1,0 +1,22 @@
+
+<div class="container">
+	<div class="top-bar">
+		<div class="row">
+			<div class="col-ms-4 col-lg-4"></div>
+			<div class="col-ms-4 col-lg-4">
+				<a class="navbar-brand" href="/">Calculator</a>
+			</div>
+			<div class="col-ms-4 col-lg-4">
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-hide="user.isLogged">
+						<a href="" data-toggle="modal" data-target="#login"><span class="fa fa-sign-in"></span> Login</a>
+					</li>
+					<li ng-show="user.isLogged">
+						<a href="/logout"><span class="fa fa-sign-out"></span> Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div><!-- end .top-bar -->
+</div>
+<modal-dialog></modal-dialog>
