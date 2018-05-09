@@ -1,42 +1,65 @@
-(function() {
+(function () {
     var buttons = document.querySelectorAll('.c-button');
     var output = document.querySelector('.output');
     var action = null;
     var current = 0;
 
-    var actions = {
-        '±': ' - ',
-        '%': ' % ',
-        '÷': ' / ',
-        '×': ' * ',
-        '−': ' - ',
-        '+': ' + ',
-    };
+    // Assigned variables
+    var operator = ['×', '÷', '-', '+', '%'];
+    var input = '';
+    var operatorFlag = false;
+    var dotFlag = false;
+    var equation = '';
+    var result = '';
+    var i;
 
-    for (button in buttons) {
-        buttons[button].onclick = function (e) {
-            var input = e.target.innerText;
-            var num = parseInt(input);
-            if (isNaN(num)) {
-                if (input === 'C') {
-                    action = null;
-                    current = 0;
-                    output.innerText = 0;
-                } else {
-                    if (action && action !== '=') {
-                        var calculation = current + actions[action] + output.innerText;
-                        output.innerText = eval(calculation);
-                    }
-                    current = parseInt(output.innerText);
-                    action = input;
+//Initiate event listener for all buttons objects
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = function (e) {
+            var btnText = this.innerHTML;
+            if (btnText === 'C') { // clear the screen
+                input = '';
+                operatorFlag = false;
+                equation = '';
+            } else if (btnText === '.') { // process the dot input
+                if (input.indexOf('.') === -1 || dotFlag) { // only one dot is allowed
+                    input += '.';
+                    dotFlag = false;
                 }
+            } else if (btnText === '=') { // process the equation when equals button is pressed
+                if (operator.indexOf(input[input.length - 1]) > -1) {
+                    input = input.slice(0, input.length - 1);
+                }
+                equation = input.replace(/×/g, '*');
+                equation = equation.replace(/÷/g, '/');
+                result = Math.round(eval(equation)*1000000)/1000000;
+                input = result;
+                operatorFlag = true;
+
+            } else if (operator.indexOf(btnText) > -1) { // process the operator input
+                if (operatorFlag) {
+                    input += btnText;
+                    operatorFlag = false;
+                } else {
+                    input = input.slice(0, input.length - 1) + btnText;
+                }
+                dotFlag = true; // after operator character it is allowed to insert
+                                // another dot in equation
             } else {
-                if (current === parseInt(output.innerText)) {
-                    output.innerText = num;
+                if (result !== '' && operator.indexOf(input[input.length - 1]) > -1) {
+                    input += btnText;
+                    result = '';
+                } else if (result !== '') {
+                    input = btnText;
+                    result = '';
                 } else {
-                    output.innerText += num;
+                    input += btnText;
                 }
+
+                operatorFlag = true;
             }
-        };
+            // print the result on the screen
+            output.innerHTML = input;
+        }
     }
 })();
