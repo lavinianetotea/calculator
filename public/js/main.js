@@ -1,3 +1,3 @@
 (function () {
-    var dessert = angular.module('main', ['topMenu', 'ng-context-menu']);
+    var main = angular.module('main', ['topMenu', 'ng-context-menu']);
 })();

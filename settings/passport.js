@@ -24,10 +24,10 @@ module.exports = function(passport){
 
 
 	// ****************************************** //
-	// *********** DESSERT LOGIN SETUP ********** //
+	// *********** MAIN LOGIN SETUP ********** //
 	// ****************************************** //
 
-	// dessert login
+	// main login
 	passport.use('main', new LocalStrategy({
 				usernameField : 'username',
 				passwordField : 'password',
@@ -40,7 +40,7 @@ module.exports = function(passport){
 
 
 	// ****************************************** //
-	// ******* DESSERT REGISTRATION SETUP ******* //
+	// ******* MAIN REGISTRATION SETUP ******* //
 	// ****************************************** //
 
 	passport.use('main-register', new LocalStrategy({
